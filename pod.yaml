@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubarch
+  labels:
+    app: kubarch
+spec:
+  containers:
+    - name: kubarch
+      image: eafomi4ev/kubarch:v1.0.0
+      ports:
+        - containerPort: 80

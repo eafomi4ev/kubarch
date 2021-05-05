@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta15
+kind: Config
+metadata:
+  name: skaffold-kubarch
+build:
+  artifacts:
+  - image: eafomi4ev/kubarch
+    context: .
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml
+    - service.yaml

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubarch
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubarch
+  template:
+    metadata:
+      labels:
+        app: kubarch
+    spec:
+      containers:
+        - name: kubarch
+          image: eafomi4ev/kubarch:v1.0.0
+          ports:
+            - name: web
+              containerPort: 80
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5
